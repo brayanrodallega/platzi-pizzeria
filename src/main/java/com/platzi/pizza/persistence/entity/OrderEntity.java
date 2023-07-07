@@ -36,10 +36,11 @@ public class OrderEntity {
     @Column(name = "additional_notes", length = 200)
     private String additionalNotes;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = false, updatable = false)
+    @JsonIgnore
     private CustomerEntity customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItemEntity> items;
 }
