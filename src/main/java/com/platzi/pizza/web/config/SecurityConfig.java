@@ -13,6 +13,8 @@ public class SecurityConfig {
 
         http
                 .csrf().disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
                 .anyRequest()
                 .authenticated()
